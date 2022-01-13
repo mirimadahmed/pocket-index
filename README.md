@@ -1,4 +1,4 @@
-# pocket-index
+# Pocket Index
 
 ## Project setup
 ```
