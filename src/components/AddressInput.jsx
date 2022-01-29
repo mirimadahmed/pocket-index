@@ -84,17 +84,9 @@ function AddressInput(props) {
     <Input
       ref={input}
       size="large"
-      placeholder={props.placeholder ? props.placeholder : "Public address"}
-      prefix={
-        isDomain || address.length === 42 ? (
-          <Blockie address={(isDomain ? validatedAddress : address).toLowerCase()} size={8} scale={3} />
-        ) : (
-          <SearchOutlined />
-        )
-      }
-      suffix={validatedAddress && <Cross />}
+      placeholder={props.placeholder ? props.placeholder : "usdt balance"}
       autoFocus={props.autoFocus}
-      value={isDomain ? `${address} (${getEllipsisTxt(validatedAddress)})` : validatedAddress || address}
+      value={props.bal}
       onChange={(e) => {
         updateAddress(e.target.value);
       }}

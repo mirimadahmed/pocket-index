@@ -117,12 +117,16 @@ function Chains() {
 
   return (
     <div>
-      <Dropdown overlay={menu} trigger={["click"]}>
+     <Button key={selected?.key} icon={selected?.icon} style={{ ...styles.button, ...styles.item }}>
+          <span style={{ marginLeft: "5px" }}>{selected?.value}</span>
+          <DownOutlined />
+        </Button>
+      {/* <Dropdown overlay={menu} trigger={["click"]}>
         <Button key={selected?.key} icon={selected?.icon} style={{ ...styles.button, ...styles.item }}>
           <span style={{ marginLeft: "5px" }}>{selected?.value}</span>
           <DownOutlined />
         </Button>
-      </Dropdown>
+      </Dropdown> */}
     </div>
   );
 }

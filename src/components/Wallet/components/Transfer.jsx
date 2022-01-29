@@ -2,9 +2,10 @@ import { CreditCardOutlined } from "@ant-design/icons";
 import { Button, Input, notification } from "antd";
 import Text from "antd/lib/typography/Text";
 import { useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralis,useERC20Balances,useTokenPrice   } from "react-moralis";
 import AddressInput from "../../AddressInput";
 import AssetSelector from "./AssetSelector";
+import ERC20Balance from "../../ERC20Balance";
 
 const styles = {
   card: {
@@ -48,10 +49,24 @@ function Transfer() {
   const [tx, setTx] = useState();
   const [amount, setAmount] = useState();
   const [isPending, setIsPending] = useState(false);
+  const {data:balance } = useERC20Balances();
+  const [usdtBal, setUsdtBal] = useState(0);
 
   useEffect(() => {
-    asset && amount && receiver ? setTx({ amount, receiver, asset }) : setTx();
-  }, [asset, amount, receiver]);
+    asset && amount && receiver && usdtBal ? setTx({ amount, receiver, asset,usdtBal  }) : setTx();
+  }, [asset, amount, receiver,usdtBal ]);
+
+  useEffect(() => {
+    if(balance){
+      balance.map( async (item)=>{
+        if(item.symbol === 'ausdt'){
+          setUsdtBal(parseFloat(Moralis?.Units?.FromWei(item.balance, 18)).toFixed(2))
+        }
+      })
+    } 
+    
+  }, []);
+
 
   const openNotification = ({ message, description }) => {
     notification.open({
@@ -122,12 +137,19 @@ function Transfer() {
       <div style={styles.tranfer}>
         <div style={styles.header}>
           <h3>Transfer Assets</h3>
+        
         </div>
+        
         <div style={styles.select}>
           <div style={styles.textWrapper}>
-            <Text strong>Address:</Text>
+            <Text strong>Balance:</Text>
           </div>
-          <AddressInput autoFocus onChange={setReceiver} />
+          
+           
+            
+           {/* {balance && balance.map( item=>{ setUsdtBal(item["balance"])  } ) }  */}
+          <AddressInput bal = {usdtBal} />
+          {/* <AddressInput autoFocus onChange={setReceiver} /> */}
         </div>
         <div style={styles.select}>
           <div style={styles.textWrapper}>
@@ -157,8 +179,10 @@ function Transfer() {
         >
           Transfer💸
         </Button>
+       
       </div>
     </div>
+    
   );
 }
 
