@@ -7,6 +7,7 @@
     >
     <p>Coming Soon</p>
     </b-jumbotron>
+    <div class="row p-3 m-0"></div>
   </div>
 </template>
 
