@@ -1,8 +1,8 @@
 <template>
   <div class="m-0 p-0">
     <b-jumbotron
-      header="AVAX Crypto Index"
-      lead="Quickly invest in top 10 crypto projects in AVAX ecosystem."
+      header="Mode Crypto Index"
+      lead="Quickly invest in top 10 crypto projects in Mode ecosystem."
       class="bg-light p-5 m-0"
     >
       <p>Management Fee: 0.1% - Performance Fee: 0.1%</p>
@@ -11,7 +11,7 @@
       <div class="col-md-4 p-3">
         <div class="bg-light p-3">
           <h5>Buy Now (High gas fee)</h5>
-          <p>Buy top 10 crypto projects on AVAX ecosystem with one click.</p>
+          <p>Buy top 10 crypto projects on Mode ecosystem with one click.</p>
           <BigInput
             :max="max"
             placeholder="0.00"

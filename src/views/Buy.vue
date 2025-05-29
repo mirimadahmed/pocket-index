@@ -1,8 +1,8 @@
 <template>
   <div class="m-0 p-0">
     <b-jumbotron
-      header="AVAX Crypto Index"
-      lead="Quickly invest in top 10 crypto projects in AVAX ecosystem."
+      header="Mode Crypto Index"
+      lead="Quickly invest in top 10 crypto projects in Mode ecosystem."
       class="bg-light p-5 m-0"
     >
       <p>Management Fee: 0.1% - Performance Fee: 0.1%</p>
@@ -95,9 +95,9 @@ import BN from "bn.js";
 import contractAbi from "@/abi.js";
 import indexAbi from "@/cabi.js";
 import lpAbi from "@/lpabi.js";
-const USDT_ADDRESS = "0x08a978a0399465621e667C49CD54CC874DC064Eb";
-const LP_ADDRESS = "0xE745a72DF0AD6F8496c418e24cdee95819F5356b";
-const CONTRACT_ADDRESS = "0x3182239686581a07407ad59eAA06c87342B26532";
+const USDT_ADDRESS = "0x88d11ccf16bd80CF89e5494E2f8BCb062bb0Cc56";
+const LP_ADDRESS = "0x4A85e1a3Cca418b42B5f1cB48dCe7AE72bFcaA6E";
+const CONTRACT_ADDRESS = "0xbD7f9A197C602CC9beA29853D9c463e2624A2b62";
 export default {
   name: "Buy",
   components: {
@@ -286,6 +286,8 @@ export default {
       this.callFunction(options).then((res) => {
         this.balance = this.$web3.utils.fromWei(res);
         this.maxBalance = new BN(res);
+        console.log("balance", this.balance)
+        console.log("maxBalance", this.maxBalance)
       });
       const optionsApproval = {
         contractAddress: USDT_ADDRESS,
@@ -299,6 +301,7 @@ export default {
       this.callFunction(optionsApproval).then((res) => {
         this.approval = this.$web3.utils.fromWei(res);
         console.log(this.approval);
+        
       });
     },
     callFunction(params) {

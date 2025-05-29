@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     supportedNetwork() {
-      return ["avalanche testnet", "0xa869", 43113].includes(this.chainId);
+      return ["avalanche testnet", "0xa869", 919].includes(this.chainId);
     },
     user() {
       return this.$moralis.User.current();
